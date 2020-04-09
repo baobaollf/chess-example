@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import CustomList from "./CustomList";
+import CurrentDay from "./CurrentDay";
+import DayOverView from "./DayOverView"
 
 
 const itemsFromBackend = [
@@ -11,21 +12,30 @@ const itemsFromBackend = [
 ];
 
 const dayList = [
-    {id: "dayOne", dayNumber: 1, items: itemsFromBackend},
-    {id: "dayTwo", dayNumber: 2},
-    {id: "dayThree", dayNumber: 3},
-    {id: "dayFour", dayNumber: 4},
-    {id: "dayFive", dayNumber: 5},
+    {id: "dayOne", name: "day 1", items: itemsFromBackend},
+    {id: "dayTwo", name: "day 2"},
+    {id: "dayThree", name: "day 3"},
+    {id: "dayFour", name: "day 4"},
+    {id: "dayFive", name: "day 5"},
 ];
 
 
 class App extends Component {
-    render() {
-        return (
-            <div className="flexbox" >
-                <CustomList items={itemsFromBackend} dayList={dayList}/>
 
-                <CustomList/>
+    render() {
+        console.log("bola")
+        return (
+
+            <div className="flexbox" >
+
+                <DayOverView items={dayList}/>
+
+                <div style={{margin: 5}}>
+
+                </div>
+                <CurrentDay items={itemsFromBackend}/>
+
+
             </div>
         );
     }

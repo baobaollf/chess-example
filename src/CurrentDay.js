@@ -11,7 +11,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "lightblue" : "lightgrey",
+    background: isDraggingOver ? "lightblue" : "lightblue",
     padding: 8,
     width: 250
 });
@@ -23,13 +23,13 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     margin: `0 0 ${8}px 0`,
 
     // change background colour if dragging
-    background: isDragging ? "lightgreen" : "grey",
+    background: isDragging ? "lightgreen" : "lightpink",
     // styles we need to apply on draggables
     ...draggableStyle
 });
 
 
-class CustomList extends Component {
+class CurrentDay extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -94,4 +94,4 @@ class CustomList extends Component {
     }
 }
 
-export default CustomList;
+export default CurrentDay;
