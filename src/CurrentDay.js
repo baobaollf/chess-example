@@ -34,7 +34,6 @@ class CurrentDay extends Component {
         super(props);
         this.state = {
             items: this.props.items,
-            dayList: this.props.dayList,
         };
         this.onDragEnd = this.onDragEnd.bind(this);
     }
