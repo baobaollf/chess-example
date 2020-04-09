@@ -34,10 +34,10 @@ class CustomList extends Component {
         super(props);
         this.state = {
             items: this.props.items,
-            dayList: this.props.dayList,
         };
         this.onDragEnd = this.onDragEnd.bind(this);
     }
+    
 
     onDragEnd(result) {
         if (!result.destination) {
@@ -52,9 +52,8 @@ class CustomList extends Component {
             items
         });
     }
-
+    
     render() {
-        console.log(this.state.items);
         return (
             <div className="flexbox">
                 <DragDropContext onDragEnd={this.onDragEnd} className="dragDropContext">
@@ -65,11 +64,10 @@ class CustomList extends Component {
                                 ref={provided.innerRef}
                                 style={getListStyle()}
                             >
-                                {this.state.items.map((item, index) => (
+                                {this.props.items.map((item, index) => (
                                     <Draggable key={item.id} draggableId={item.id} index={index}>
                                         {(provided, snapshot) => (
                                             <div
-                                                onClick={() => console.log(item.name)}
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
