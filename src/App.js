@@ -68,6 +68,12 @@ class App extends Component {
         });
     }
 
+    refreshDayList() {
+        this.setState({
+            currentDayList: this.state.currentDayList,
+        });
+    }
+
     reorder(list, startIndex, endIndex) {
         const result = [...list];
         const [removed] = result.splice(startIndex, 1);
@@ -98,6 +104,7 @@ class App extends Component {
 
                 <CurrentDay
                     items={this.state.currentDayList}
+                    updateItem={this.updateItem.bind(this)}
                     reorder={this.reorder.bind(this)} />
             </div>
         );
