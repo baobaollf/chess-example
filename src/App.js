@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import DayOverView from "./DayOverView"
+import CurrentDay from "./CurrentDay";
 
 const itemsFromBackend = [
     {id: '1', name: "park1"},
@@ -52,12 +53,52 @@ const dayList = [
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dayList: dayList,
+            currentDayList: dayList[1].poi,
+        };
+        // this.updateItem = this.updateItem.bind(this);
+    }
+
+    updateItem(list) {
+        this.setState({
+            currentDayList: list,
+        });
+    }
+
+    reorder(list, startIndex, endIndex) {
+        const result = [...list];
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        this.setState({
+            currentDayList: result,
+        });
+        console.log(this.state.currentDayList)
+    }
+
+    reorder_day(list, startIndex, endIndex) {
+        const result = [...list];
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        this.setState({
+            dayList: result,
+        });
+    }
+
     render() {
+        // console.log(this.state.currentDayList);
         return (
             <div className="flexbox" >
-                <DayOverView items={dayList}/>
+                <DayOverView
+                    items={this.state.dayList}
+                    updateItem={this.updateItem.bind(this)}
+                    reorder={this.reorder_day.bind(this)} />
 
-
+                <CurrentDay
+                    items={this.state.currentDayList}
+                    reorder={this.reorder.bind(this)} />
             </div>
         );
     }

@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 
 // a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-    console.log(startIndex, endIndex);
-    const result = [...list];
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    return result;
-};
+// const reorder = (list, startIndex, endIndex) => {
+//     const result = [...list];
+//     const [removed] = result.splice(startIndex, 1);
+//     result.splice(endIndex, 0, removed);
+//     return result;
+// };
 
 const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? "lightblue" : "lightblue",
@@ -32,28 +31,37 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 class CurrentDay extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            items: this.props.items,
-        };
+        // this.state = {
+        //     items: this.props.items,
+        // };
         this.onDragEnd = this.onDragEnd.bind(this);
+    }
+
+    re_order(list, start, end) {
+        return this.props.reorder(list, start, end);
     }
 
     onDragEnd(result) {
         if (!result.destination) {
             return;
+        } else {
+            this.re_order(
+                this.props.items,
+                result.source.index,
+                result.destination.index,
+            )
         }
-        const items = reorder(
-            this.state.items,
-            result.source.index,
-            result.destination.index,
-        );
-        this.setState({
-            items
-        });
+        // const items = this.props.reorder(
+        //     this.props.items,
+        //     result.source.index,
+        //     result.destination.index,
+        // );
+        // this.setState({
+        //     items: items,
+        // });
     }
 
     render() {
-        console.log(this.state.items);
         return (
             <div className="flexbox">
                 <DragDropContext onDragEnd={this.onDragEnd} className="dragDropContext">
@@ -64,11 +72,11 @@ class CurrentDay extends Component {
                                 ref={provided.innerRef}
                                 style={getListStyle()}
                             >
-                                {this.state.items.map((item, index) => (
+                                {this.props.items.map((item, index) => (
                                     <Draggable key={item.id} draggableId={item.id} index={index}>
                                         {(provided, snapshot) => (
                                             <div
-                                                onClick={() => console.log(item.name)}
+                                                // onClick={() => console.log(item.name)}
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
