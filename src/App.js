@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import DayOverView from "./DayOverView"
 import CurrentDay from "./CurrentDay";
+import list from "./response"
+import TopList from"./TopList"
 
 const itemsFromBackend = [
     {id: '1', name: "park1"},
@@ -23,7 +25,21 @@ const itemsFromBackend3 = [
     {id: '2', name: "bridge2"},
     {id: '3', name: "bridge3"},
     {id: '4', name: "bridge4"},
-    {id: '5', name: "bridge5"}
+    {id: '5', name: "bridge4"},
+    {id: '6', name: "bridge4"},
+    {id: '7', name: "bridge4"},
+    {id: '8', name: "bridge4"},
+    {id: '9', name: "bridge4"},
+    {id: '10', name: "bridge4"},
+    {id: '11', name: "bridge4"},
+    {id: '12', name: "bridge4"},
+    {id: '13', name: "bridge4"},
+    {id: '14', name: "bridge4"},
+    {id: '15', name: "bridge4"},
+    {id: '16', name: "bridge4"},
+    {id: '17', name: "bridge4"},
+    {id: '18', name: "bridge4"},
+    {id: '19', name: "bridge5"}
 ];
 
 const itemsFromBackend4 = [
@@ -87,18 +103,30 @@ class App extends Component {
         });
     }
 
+    deleteItem(index) {
+        // console.log(index);
+        const result = this.state.currentDayList;
+        result.splice(index, 1);
+        this.setState({
+            currentDayList: result,
+        });
+        // console.log(this.state.currentDayList)
+    }
+
     render() {
-        // console.log(this.state.currentDayList);
         return (
             <div className="flexbox" >
                 <DayOverView
                     items={this.state.dayList}
                     updateItem={this.updateItem.bind(this)}
                     reorder={this.reorder_day.bind(this)} />
-
+                    <div
+                        style={{padding: 10}}/>
                 <CurrentDay
                     items={this.state.currentDayList}
-                    reorder={this.reorder.bind(this)} />
+                    reorder={this.reorder.bind(this)}
+                    deleteItem={this.deleteItem.bind(this)}/>
+                    <TopList/>
             </div>
         );
     }

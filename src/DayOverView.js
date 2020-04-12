@@ -1,23 +1,12 @@
 import React, {Component} from 'react';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 
-// a little function to help us with reordering the result
-// const reorder = (list, startIndex, endIndex) => {
-//     const result = [...list];
-//     const [removed] = result.splice(startIndex, 1);
-//     result.splice(endIndex, 0, removed);
-//     // let i = 0;
-//     // for (; i < result.length; i++) {
-//     //     result.name = `day${i}`;
-//     // }
-//     // console.log(result);
-//     return result;
-// };
-
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "lightblue" : "blue",
+    //background: isDraggingOver ? "lightblue" : "blue",
+    background: "white",
     padding: 8,
-    width: 100
+    width: 100,
+    borderColor: '#000000',
 });
 
 const getItemStyle = (isDragging, draggableStyle) => ({
@@ -25,9 +14,13 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     userSelect: "none",
     padding: 8 * 2,
     margin: `0 0 ${8}px 0`,
-
+    borderWidth: 200,
+    borderColor: "black",
+    borderRadius: 10,
     // change background colour if dragging
-    background: isDragging ? "lightgreen" : "pink",
+    background: isDragging ? "lightgreen" : '#e1e2da',
+
+    // color: '#FFFFFF',
     // styles we need to apply on draggables
     ...draggableStyle
 });
@@ -86,8 +79,7 @@ class DayOverView extends Component {
                                                     provided.draggableProps.style
                                                 )}
                                             >
-                                                {`day ${index + 1}`}
-                                                {/*{this.state.shown ? <CurrentDay items={this.state.currentDayList}/> : ""}*/}
+                                                {`Day ${index + 1}`}
                                             </div>
                                         )}
                                     </Draggable>
