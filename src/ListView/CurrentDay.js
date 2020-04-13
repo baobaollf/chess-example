@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import DeleteIcon from '@material-ui/icons/Delete';
 
+
 const getListStyle = isDraggingOver => ({
     // background: isDraggingOver ? "lightblue" : "lightblue",
     background: 'white',
     padding: 8,
-    width: 250
+    width: 250,
+    position: "absolute",
+    overflow: "auto",
 });
 
 const getItemStyle = (isDragging, draggableStyle) => ({
@@ -55,6 +58,7 @@ class CurrentDay extends Component {
                     <Droppable droppableId="droppable">
                         {(provided, snapshot) => (
                             <div
+                                className="dayList-style"
                                 {...provided.droppableProps}
                                 ref={provided.innerRef}
                                 style={getListStyle()}

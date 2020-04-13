@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import DayOverView from "./DayOverView"
 import CurrentDay from "./CurrentDay";
-import list from "./response"
-import TopList from"./TopList"
+import list from "../response"
+import TopList from "../TopList"
+import ListView from "./ListView";
 
 const itemsFromBackend = [
     {id: '1', name: "park1"},
@@ -75,58 +76,25 @@ class App extends Component {
             dayList: dayList,
             currentDayList: dayList[1].poi,
         };
-        // this.updateItem = this.updateItem.bind(this);
-    }
-
-    updateItem(list) {
-        this.setState({
-            currentDayList: list,
-        });
-    }
-
-    reorder(list, startIndex, endIndex) {
-        const result = this.state.currentDayList;
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-        this.setState({
-            currentDayList: result,
-        });
-        console.log(this.state.currentDayList)
-    }
-
-    reorder_day(list, startIndex, endIndex) {
-        const result = [...list];
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-        this.setState({
-            dayList: result,
-        });
-    }
-
-    deleteItem(index) {
-        // console.log(index);
-        const result = this.state.currentDayList;
-        result.splice(index, 1);
-        this.setState({
-            currentDayList: result,
-        });
-        // console.log(this.state.currentDayList)
     }
 
     render() {
         return (
             <div className="flexbox" >
-                <DayOverView
-                    items={this.state.dayList}
-                    updateItem={this.updateItem.bind(this)}
-                    reorder={this.reorder_day.bind(this)} />
-                    <div
-                        style={{padding: 10}}/>
-                <CurrentDay
-                    items={this.state.currentDayList}
-                    reorder={this.reorder.bind(this)}
-                    deleteItem={this.deleteItem.bind(this)}/>
-                    <TopList/>
+                <ListView dayList={this.state.dayList}
+                          currentDayList={this.state.currentDayList}
+                />
+                {/*<DayOverView*/}
+                {/*    items={this.state.dayList}*/}
+                {/*    updateItem={this.updateItem.bind(this)}*/}
+                {/*    reorder={this.reorder_day.bind(this)} />*/}
+                {/*    <div*/}
+                {/*        style={{padding: 10}}/>*/}
+                {/*<CurrentDay*/}
+                {/*    items={this.state.currentDayList}*/}
+                {/*    reorder={this.reorder.bind(this)}*/}
+                {/*    deleteItem={this.deleteItem.bind(this)}/>*/}
+                {/*    <TopList/>*/}
             </div>
         );
     }
