@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-import DayOverView from "./DayOverView"
-import CurrentDay from "./CurrentDay";
-import list from "../response"
-import TopList from "../TopList"
-import ListView from "./ListView";
+import ListView from "./ListView/ListView";
 
 const itemsFromBackend = [
     {id: '1', name: "park1"},
@@ -84,17 +80,6 @@ class App extends Component {
                 <ListView dayList={this.state.dayList}
                           currentDayList={this.state.currentDayList}
                 />
-                {/*<DayOverView*/}
-                {/*    items={this.state.dayList}*/}
-                {/*    updateItem={this.updateItem.bind(this)}*/}
-                {/*    reorder={this.reorder_day.bind(this)} />*/}
-                {/*    <div*/}
-                {/*        style={{padding: 10}}/>*/}
-                {/*<CurrentDay*/}
-                {/*    items={this.state.currentDayList}*/}
-                {/*    reorder={this.reorder.bind(this)}*/}
-                {/*    deleteItem={this.deleteItem.bind(this)}/>*/}
-                {/*    <TopList/>*/}
             </div>
         );
     }
